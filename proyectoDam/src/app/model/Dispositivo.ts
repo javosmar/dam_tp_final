@@ -1,8 +1,8 @@
 export class Dispositivo{
-    private _dispositivoId;
-    private _nombre;
-    private _ubicacion;
-    private _electrovalvulaId;
+    private _dispositivoId: number;
+    private _nombre: string;
+    private _ubicacion: string;
+    private _electrovalvulaId: number;
     
     constructor(dispId:number,nombre:string,ubicacion:string,electovalId:number){
         this._dispositivoId = dispId;

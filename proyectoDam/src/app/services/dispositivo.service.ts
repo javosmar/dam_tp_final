@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Dispositivo } from '../Dispositivo';
+import { Dispositivo } from '../model/Dispositivo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DispositivoService {
 
-  public array = [
-    new Dispositivo(1,"Sensor 1","Patio",1),
-    new Dispositivo(2,"Sensor 2","Cocina",2),
-    new Dispositivo(3,"Sensor 3","Jardin Delantero",3),
-    new Dispositivo(4,"Sensor 4","Living",4),
-    new Dispositivo(5,"Sensor 5","Living",5),
-  ];
+  listado: Array<Dispositivo> = new Array<Dispositivo>();
 
-  constructor() { }
+  constructor() { 
+    var disp1: Dispositivo = new Dispositivo(1,"Sensor 1","Patio",1);
+    var disp2: Dispositivo = new Dispositivo(2,"Sensor 2","Cocina",2);
+    var disp3: Dispositivo = new Dispositivo(3,"Sensor 3","Jardin Delantero",3);
+    var disp4: Dispositivo = new Dispositivo(4,"Sensor 4","Living",4);
+    this.listado.push(disp1);
+    this.listado.push(disp2);
+    this.listado.push(disp3);
+    this.listado.push(disp4);
+  }
 
-  getDispositivos(){
-    return this.array;
+  getListado(){
+    return this.listado;
+  }
+
+  getDispositivo(id: number): Dispositivo {
+    return this.listado.find(dispositivo => dispositivo.dispositivoId === id);
   }
 
 }

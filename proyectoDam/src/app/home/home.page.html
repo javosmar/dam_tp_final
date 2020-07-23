@@ -30,7 +30,7 @@
   <!-- LISTA DE ITEMS -->
   <ion-list>
 
-    <ion-item *ngFor="let e of array" button (click)="buttonClick()">
+    <ion-item *ngFor="let e of array" routerLink="/dispositivo/{{e.dispositivoId}}">
       <ion-icon name="thermometer-outline"></ion-icon>
       <ion-label class="ion-text-wrap">
         <ion-text color="primary">
