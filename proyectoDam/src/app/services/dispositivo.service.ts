@@ -1,30 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Dispositivo } from '../model/Dispositivo';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DispositivoService {
 
-  listado: Array<Dispositivo> = new Array<Dispositivo>();
+  constructor(private httpServ: HttpClient) {}
 
-  constructor() { 
-    var disp1: Dispositivo = new Dispositivo(1,"Sensor 1","Patio",1);
-    var disp2: Dispositivo = new Dispositivo(2,"Sensor 2","Cocina",2);
-    var disp3: Dispositivo = new Dispositivo(3,"Sensor 3","Jardin Delantero",3);
-    var disp4: Dispositivo = new Dispositivo(4,"Sensor 4","Living",4);
-    this.listado.push(disp1);
-    this.listado.push(disp2);
-    this.listado.push(disp3);
-    this.listado.push(disp4);
+  private url = 'http://localhost:3000';
+
+  getListado(): Promise<Dispositivo[]> {
+    const url = this.url + '/api/dispositivo/todos';
+    return this.httpServ.get(url).toPromise().then((objeto: Dispositivo) => {
+      return objeto;
+    }).catch((err) => {
+      console.log('Error en la consulta');
+      return null;
+    });
   }
 
-  getListado(){
-    return this.listado;
+  getDispositivo(id): Promise<Dispositivo> {
+    const url = this.url + '/api/dispositivo/' + id;
+    return this.httpServ.get(url).toPromise().then((objeto: Dispositivo) => {
+      return objeto;
+    }).catch((err) => {
+      console.log('Error en la consulta');
+      return new Dispositivo(1, 'a', 'a', 1);
+    });
   }
 
-  getDispositivo(id: number): Dispositivo {
-    return this.listado.find(dispositivo => dispositivo.dispositivoId === id);
+  insertarUno() {
+    const url = this.url + '/api/dispositivo';
+    this.httpServ.post(this.url, { nombre: "Martin", apellido: "Acosta" });
   }
 
 }

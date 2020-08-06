@@ -13,7 +13,9 @@ export class HomePage {
   constructor(public dispositivoServ: DispositivoService) {}
 
   ngOnInit(): void {
-    this.array = this.dispositivoServ.getListado();
+    this.dispositivoServ.getListado().then((listado) => {
+      this.array = listado;
+    });
   }
 
 }

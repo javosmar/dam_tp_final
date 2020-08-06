@@ -11,7 +11,7 @@ import { Dispositivo } from '../model/Dispositivo';
 export class DispositivoPage implements OnInit {
 
   id: number;
-  dispositivo: Dispositivo;
+  public dispositivo = new Dispositivo(1,"a","a",1);
 
   constructor(private dispositivoServ: DispositivoService, private route:ActivatedRoute) { }
 
@@ -21,9 +21,10 @@ export class DispositivoPage implements OnInit {
 
   ionViewWillEnter() {
     let idDipositivo = +this.route.snapshot.paramMap.get('id');
-    this.dispositivo = this.dispositivoServ.getDispositivo(idDipositivo);
+    this.dispositivoServ.getDispositivo(idDipositivo).then((disp) => {
+      this.dispositivo = disp;
+    });
     this.id = this.dispositivo.dispositivoId;
-    console.log(this.dispositivo);
   }
 
 }
