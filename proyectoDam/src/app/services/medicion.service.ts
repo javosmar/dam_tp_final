@@ -13,7 +13,8 @@ export class MedicionService {
 
   /**
    * Obtiene la lectura más reciente de un dispositivo
-   * @param id Id del dispositivo
+   * @param id El ID del dispositivo
+   * @returns Una promesa donde se devuelve la medición
    */
   getMedicion(id): Promise<Medicion> {
     const url = `${this.url}/api/medicion/${id}`;
@@ -28,6 +29,7 @@ export class MedicionService {
   /**
    * Obtiene todas las mediciones de un dispositivo
    * @param id Id del dispositivo
+   * @returns Una promesa donde se devuelve Medicion[]
    */
   getMediciones(id): Promise<Medicion[]> {
     const url = `${this.url}/api/medicion/todas/${id}`;
@@ -39,6 +41,10 @@ export class MedicionService {
     });
   }
 
+  /**
+   * Envía una medición para ser almacenada
+   * @param medicion Medición a almacenar en DB
+   */
   postMedicion(medicion: Medicion) {
     const url = `${this.url}/api/medicion`;
     return this.httpServ.post(url, medicion).toPromise().then()
