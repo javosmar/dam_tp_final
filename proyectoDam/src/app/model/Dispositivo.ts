@@ -1,10 +1,17 @@
-export class Dispositivo{
+/**
+ * Clase Dispositivo
+ * @property _dispositivoId: number
+ * @property _nombre: string
+ * @property _ubicacion: string
+ * @property _electrovalvulaId: number
+ */
+export class Dispositivo {
     private _dispositivoId: number;
     private _nombre: string;
     private _ubicacion: string;
     private _electrovalvulaId: number;
-    
-    constructor(dispId:number,nombre:string,ubicacion:string,electovalId:number){
+
+    constructor(dispId: number, nombre: string, ubicacion: string, electovalId: number) {
         this._dispositivoId = dispId;
         this._nombre = nombre;
         this._ubicacion = ubicacion;
