@@ -17,49 +17,29 @@
 
       <ion-col size="12" size-md *ngFor="let e of array">
 
-      <ion-card button  routerLink="/dispositivo/{{e.dispositivoId}}">
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-icon name="thermometer-outline"></ion-icon>
-            ID del dispositivo: {{ e.dispositivoId }}
-          </ion-card-subtitle>
-          <ion-card-title>{{ e.nombre }}</ion-card-title>
-        </ion-card-header>
+        <ion-card button routerLink="/dispositivo/{{e.dispositivoId}}">
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-icon name="thermometer-outline"></ion-icon>
+              ID del dispositivo: {{ e.dispositivoId }}
+            </ion-card-subtitle>
+            <ion-card-title>{{ e.nombre }}</ion-card-title>
+          </ion-card-header>
 
-        <ion-card-content>
-          <p>
-            {{ e.ubicacion }}
-          </p>
-          <p>
-            ID de electroválvula: {{ e.electrovalvulaId }}
-          </p>
-        </ion-card-content>
-      </ion-card>
+          <ion-card-content>
+            <p>
+              {{ e.ubicacion }}
+            </p>
+            <p>
+              ID de electroválvula: {{ e.electrovalvulaId }}
+            </p>
+          </ion-card-content>
+        </ion-card>
 
-    </ion-col>
+      </ion-col>
 
     </ion-row>
 
   </ion-grid>
-
-  <!-- LISTA DE ITEMS -->
-
-  <ion-list>
-
-    <ion-item *ngFor="let e of array" routerLink="/dispositivo/{{e.dispositivoId}}">
-      <ion-icon name="thermometer-outline"></ion-icon>
-      <ion-label class="ion-text-wrap">
-        <ion-text color="primary">
-          <h3>{{ e.nombre }}</h3>
-        </ion-text>
-        <p>ID del dispositivo: {{ e.dispositivoId }}</p>
-        <ion-text color="secondary">
-          <p>Ubicación: {{ e.ubicacion }}</p>
-          <p>ID de electroválvula: {{ e.electrovalvulaId }}</p>
-        </ion-text>
-      </ion-label>
-    </ion-item>
-
-  </ion-list>
 
 </ion-content>

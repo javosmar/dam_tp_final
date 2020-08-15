@@ -47,6 +47,8 @@ export class MedicionService {
    */
   postMedicion(medicion: Medicion) {
     const url = `${this.url}/api/medicion`;
-    return this.httpServ.post(url, medicion).toPromise().then()
+    return this.httpServ.post(url, medicion).toPromise().then((result) => {
+      return result;
+    });
   }
 }

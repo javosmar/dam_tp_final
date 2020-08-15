@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DispositivoService } from '../services/dispositivo.service';
+import { Dispositivo } from "../model/Dispositivo";
 
 @Component({
   selector: 'app-home',
