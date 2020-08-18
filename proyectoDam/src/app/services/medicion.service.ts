@@ -45,10 +45,18 @@ export class MedicionService {
    * Envía una medición para ser almacenada
    * @param medicion Medición a almacenar en DB
    */
-  postMedicion(medicion: Medicion) {
+  // postMedicion(medicion: Medicion) {
+  postMedicion(valor: number, id: number) {
     const url = `${this.url}/api/medicion`;
-    return this.httpServ.post(url, medicion).toPromise().then((result) => {
+    const dato = {
+      fecha: new Date(),
+      valor,
+      id
+    };
+    console.log(dato);
+    return this.httpServ.post(url, dato).toPromise().then((result) => {
       return result;
     });
   }
+
 }

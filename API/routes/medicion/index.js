@@ -1,43 +1,51 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const router = Router();
 const pool = require('../../mysql');
 
-router.get('/:id', (req,res,next) => {
-    const {id} = req.params;
-    pool.query('SELECT * FROM Mediciones WHERE dispositivoId=? ORDER BY fecha DESC', [id], function(err,result){
-            if(err){
-                res.status(500).send('Error en la consulta');
-            }
-            res.status(200).json(result[0]);
-    });
-    //res.status(200).send(`hola desde medicion con id ${id}`);
-});
-
-    // Get method
-router.get('/todas/:id', (req,res,next) => {
-    const {id} = req.params;
-    console.log(id);
-    pool.query('SELECT * FROM Mediciones WHERE dispositivoId = ?', [id], function(err,result){
-            if(err){
-                res.status(500).send('Error en la consulta');
-            }
-            res.status(200).json(result);
-    });
-});
-
-router.post('/', (req,res,next) => {
-    const {id, fecha, valor} = req.body;
-    console.log(req.params);
-    pool.query('INSERT INTO Mediciones (fecha, valor, dispositivoId) VALUES (?,?,?)', [fecha, valor, id], function(err,result){
-        console.log(fecha);
-        console.log(valor);
-        console.log(id);
-        if(err){
+/**
+ * Obtengo la última medición del dispositivo con el id recibido como parámetro
+ * @param id ID del dispositivo
+ */
+router.get('/:id', (req, res, next) => {
+    const { id } = req.params;
+    pool.query('SELECT * FROM Mediciones WHERE dispositivoId=? ORDER BY fecha DESC', [id], function (err, result) {
+        if (err) {
             res.status(500).send('Error en la consulta');
         }
-        res.status(200).send('Valores almacenados en la DB');
+        res.status(200).json(result[0]);
     });
 });
 
-    // Export router
+/**
+ * Obtengo todas las mediciones del dispositivo con el id recibido como parámetro
+ * @param id ID del dispositivo
+ */
+router.get('/todas/:id', (req, res, next) => {
+    const { id } = req.params;
+    pool.query('SELECT * FROM Mediciones WHERE dispositivoId = ? ORDER BY fecha DESC', [id], function (err, result) {
+        if (err) {
+            res.status(500).send('Error en la consulta');
+        }
+        res.status(200).json(result);
+    });
+});
+
+/**
+ * Guardo en la tabla 'Mediciones' una nueva medición
+ * @param {id, fecha, valor}
+ */
+router.post('/', (req, res, next) => {
+    const { id, fecha, valor } = req.body;
+    
+    //  Convierto el formato de la fecha para guardar en la DB ( 2020-08-15T22:59:40.027Z -> 2020-08-15 22:59:40 )
+    const newFecha = new Date(fecha).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    pool.query('INSERT INTO Mediciones (fecha, valor, dispositivoId) VALUES (?,?,?)', [newFecha, valor, id], function (err, result) {
+        if (err) {
+            res.status(500).json({ msg: 'Error en la consulta a la DB' });
+        }
+        res.status(200).json({ msg: 'Valores almacenados en la DB' });
+    });
+});
+
+// Export router
 module.exports = router;

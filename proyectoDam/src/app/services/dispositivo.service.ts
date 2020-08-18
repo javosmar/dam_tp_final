@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class DispositivoService {
 
-  constructor(private httpServ: HttpClient) {}
+  constructor(private httpServ: HttpClient) { }
 
   private url = 'http://localhost:3000';
 
@@ -45,6 +45,23 @@ export class DispositivoService {
   insertarUno() {
     const url = this.url + '/api/dispositivo';
     this.httpServ.post(this.url, { nombre: "Martin", apellido: "Acosta" });
+  }
+
+  /**
+   * Envía por POST el id de electroválvula para insertar un nuevo registro en la tabla Log_Riegos
+   * @param apertura Valor para indicar la apertura o clausura de la electroválvula
+   * @param electrovalvulaId Dispositivo desde el que se ejecuta la acción
+   */
+  postElectrovalvula(apertura: number, electrovalvulaId: number) {
+    const dato = {
+      apertura,
+      fecha: new Date(),
+      electrovalvulaId
+    }
+    const url = this.url + '/api/dispositivo/electrovalvula';
+    return this.httpServ.post(url, dato).toPromise().then((result) => {
+      return result;
+    });
   }
 
 }

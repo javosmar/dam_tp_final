@@ -19,19 +19,17 @@
 
         <ion-card button routerLink="/dispositivo/{{e.dispositivoId}}">
           <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="thermometer-outline"></ion-icon>{{ e.ubicacion }}
+            </ion-card-title>
             <ion-card-subtitle>
-              <ion-icon name="thermometer-outline"></ion-icon>
               ID del dispositivo: {{ e.dispositivoId }}
             </ion-card-subtitle>
-            <ion-card-title>{{ e.nombre }}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <p>
-              {{ e.ubicacion }}
-            </p>
-            <p>
-              ID de electroválvula: {{ e.electrovalvulaId }}
+              {{ e.nombre }}
             </p>
           </ion-card-content>
         </ion-card>
