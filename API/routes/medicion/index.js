@@ -47,5 +47,19 @@ router.post('/', (req, res, next) => {
     });
 });
 
+/**
+ * Obtengo todas las mediciones del dispositivo con el id recibido como parámetro
+ * @param id ID del dispositivo
+ */
+router.get('/riegos/:id', (req, res, next) => {
+    const { id } = req.params;
+    pool.query('SELECT * FROM Log_Riegos WHERE electrovalvulaId = ? ORDER BY fecha DESC', [id], function (err, result) {
+        if (err) {
+            res.status(500).send('Error en la consulta');
+        }
+        res.status(200).json(result);
+    });
+});
+
 // Export router
 module.exports = router;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Medicion } from '../model/Medicion';
+import { Riego } from '../model/Riego';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,21 @@ export class MedicionService {
   getMediciones(id): Promise<Medicion[]> {
     const url = `${this.url}/api/medicion/todas/${id}`;
     return this.httpServ.get(url).toPromise().then((objeto: Medicion) => {
+      return objeto;
+    }).catch((err) => {
+      console.log('Error en la consulta');
+      return null;
+    });
+  }
+
+  /**
+   * Obtiene el log de riegos de un dispositivo
+   * @param id Id del dispositivo
+   * @returns Una promesa donde se devuelve Riego[]
+   */
+  getRiegos(id): Promise<Riego[]> {
+    const url = `${this.url}/api/medicion/riegos/${id}`;
+    return this.httpServ.get(url).toPromise().then((objeto: Riego) => {
       return objeto;
     }).catch((err) => {
       console.log('Error en la consulta');

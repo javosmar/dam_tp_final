@@ -63,6 +63,7 @@ export class DispositivoPage implements OnInit {
         clearInterval(intervalObj);
         this.dispositivoServ.postElectrovalvula(0,this.dispositivo.electrovalvulaId);
         this.medicionServ.postMedicion(valor, this.dispositivo.dispositivoId);
+        this.updateChart(valor);
       }
     }, 500);
     // ************************************************************************************

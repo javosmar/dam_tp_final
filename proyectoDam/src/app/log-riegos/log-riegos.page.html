@@ -1,15 +1,14 @@
 <ion-header>
+
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button icon="return-up-back-outline"></ion-back-button>
-      <ion-button routerLink="/" routerDirection="back">
-        <ion-icon name="home-outline"></ion-icon>
-      </ion-button>
+      <ion-button routerLink="/" routerDirection="back"><ion-icon name="home-outline"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Mediciones en </ion-title>
+    <ion-title>logRiegos</ion-title>
   </ion-toolbar>
-</ion-header>
 
+</ion-header>
 
 <ion-content>
 
@@ -20,11 +19,11 @@
 
         <ion-card-header>
           <h1>
-            Historial de mediciones
+            Log de riegos
           </h1>
         </ion-card-header>
 
-        <ion-card-content *ngIf="mediciones?.length > 0">
+        <ion-card-content>
 
           <ion-row>
             <ion-col col-4>
@@ -39,24 +38,18 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngFor="let medicion of mediciones">
+          <ion-row *ngFor="let riego of riegos">
             <ion-col col-4>
               <ion-item>
-                {{medicion.fecha}}
+                {{riego.fecha}}
               </ion-item>
             </ion-col>
             <ion-col col-4>
               <ion-item>
-                {{medicion.valor}}
+                {{riego.apertura}}
               </ion-item>
             </ion-col>
           </ion-row>
-
-        </ion-card-content>
-
-        <ion-card-content *ngIf="mediciones?.length == 0">
-
-          No hay mediciones registradas
 
         </ion-card-content>
 
