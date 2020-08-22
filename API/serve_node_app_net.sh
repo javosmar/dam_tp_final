@@ -25,7 +25,7 @@ echo "{$CONTAINER_NAME, app-dir:$APP_DIR, entry-poiny:$FILE, host-port:$HOST_POR
 
 docker run  \
 --rm  \
---interactive \
+--detach \
 --name $CONTAINER_NAME \
 --network $HOST_NET \
 --publish $HOST_PORT:$CONTAINER_PORT \
