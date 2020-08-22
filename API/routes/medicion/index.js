@@ -48,8 +48,8 @@ router.post('/', (req, res, next) => {
 });
 
 /**
- * Obtengo todas las mediciones del dispositivo con el id recibido como parámetro
- * @param id ID del dispositivo
+ * Obtengo todos los cambios de la electroválvula con el id recibido como parámetro
+ * @param id ID de la electroválvula
  */
 router.get('/riegos/:id', (req, res, next) => {
     const { id } = req.params;

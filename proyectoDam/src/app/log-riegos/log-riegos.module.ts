@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LogRiegosPageRoutingModule } from './log-riegos-routing.module';
 
 import { LogRiegosPage } from './log-riegos.page';
+import { FormatoFechaPipe } from '../pipes/formato-fecha.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { LogRiegosPage } from './log-riegos.page';
     IonicModule,
     LogRiegosPageRoutingModule
   ],
-  declarations: [LogRiegosPage]
+  declarations: [LogRiegosPage, FormatoFechaPipe]
 })
 export class LogRiegosPageModule {}

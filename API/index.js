@@ -6,7 +6,6 @@ const cors = require('cors');
 const corsConfig = { origin: '*', optionsSuccessStatus: 200 };
 
 // Routes definition
-const routerUser = require('./routes/user');
 const routerDispositivo = require('./routes/dispositivo');
 const routerMedicion = require('./routes/medicion');
 
@@ -18,7 +17,6 @@ app.use(express.json());
 app.use(cors(corsConfig));
 
 // Routes asignation
-app.use('/api/user', routerUser);
 app.use('/api/dispositivo', routerDispositivo);
 app.use('/api/medicion', routerMedicion);
 

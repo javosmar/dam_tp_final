@@ -5,9 +5,11 @@ import { Directive, ElementRef } from '@angular/core';
 })
 export class ColorBotonDirective {
 
+  /**
+   * Cambio el atributo 'color' del elemento recibido
+   */
   constructor(private el: ElementRef) { 
-    console.log("hola");
-    el.nativeElement.style.color = 'yellow';
+    el.nativeElement.setAttribute('color','danger');
   }
 
 }

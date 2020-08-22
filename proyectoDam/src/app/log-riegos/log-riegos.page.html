@@ -41,7 +41,7 @@
           <ion-row *ngFor="let riego of riegos">
             <ion-col col-4>
               <ion-item>
-                {{riego.fecha}}
+                {{riego.fecha | formatoFecha}}
               </ion-item>
             </ion-col>
             <ion-col col-4>
